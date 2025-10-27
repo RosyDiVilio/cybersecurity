@@ -1,0 +1,7 @@
+⚠️ ATTENZIONE! I TUOI FILE SONO STATI CRIPTATI! ⚠️
+
+Questo è un esperimento didattico. Per decifrare:
+1. Usa 'private_key.pem' e 'mydecrypt.py'
+2. NON DISTRUGGERE I FILE .encrypted
+
+🔐 Ricorda: questo è solo per studio della sicurezza!

@@ -1,0 +1,34 @@
+// smtp1.spk - esempio didattico (non reale, adattalo se necessario)
+
+/* Connessione: Spike apre la connessione TCP e attende il banner SMTP */
+s_read(); // legge il banner del server (220 ...)
+
+/* Invia HELO/EHLO: qui definiamo un campo stringa fuzzabile */
+s_write("EHLO ");
+STR("HOSTNAME"); // <--- STR() è un campo fuzzable: Spike inserir� mutazioni qui
+s_write("\r\n");
+s_read(); // legge la risposta del server
+
+/* MAIL FROM: campo email - altro punto di fuzzing */
+s_write("MAIL FROM:<");
+STR("<attacker@example.com>"); // <--- altro campo fuzzabile (lunghezze, caratteri speciali)
+s_write(">\r\n");
+s_read();
+
+/* RCPT TO: */
+s_write("RCPT TO:<");
+STR("victim@example.com"); // <--- fuzz point
+s_write(">\r\n");
+s_read();
+
+/* DATA: invia body, possibile fuzzing di payload multilinea */
+s_write("DATA\r\n");
+s_read();
+s_write("Subject: Test\r\n\r\n");
+STR("Corpo del messaggio con possibili payload di fuzzing...\r\n");
+s_write("\r\n.\r\n");
+s_read();
+
+/* QUIT e chiusura */
+s_write("QUIT\r\n");
+s_close();

